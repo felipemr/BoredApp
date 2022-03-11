@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct MainView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -30,11 +30,13 @@ struct ContentView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+                    Button(action: addItem) {
+                        Label("Random Item", systemImage: "dice")
+                    }
                 }
                 ToolbarItem {
                     Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                        Label("Add Item", systemImage: "plus.circle")
                     }
                 }
             }
@@ -83,6 +85,6 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        MainView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
