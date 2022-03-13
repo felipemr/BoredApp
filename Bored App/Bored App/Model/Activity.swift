@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Activity: Codable {
+struct Activity: Codable, Hashable {
     let activity: String
     let type: String
     let participants: Int
