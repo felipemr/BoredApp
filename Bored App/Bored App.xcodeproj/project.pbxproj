@@ -19,6 +19,7 @@
 		FE4A461927DC14FB00619A05 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4A461827DC14FB00619A05 /* DetailView.swift */; };
 		FE4A461B27DC151400619A05 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4A461A27DC151400619A05 /* SearchView.swift */; };
 		FE4A461D27DC16A800619A05 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4A461C27DC16A800619A05 /* Activity.swift */; };
+		FEE0EF7627DE6616001A4883 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE0EF7527DE6616001A4883 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		FE4A461827DC14FB00619A05 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		FE4A461A27DC151400619A05 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		FE4A461C27DC16A800619A05 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		FEE0EF7527DE6616001A4883 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 		FE4A45E427DC12CD00619A05 /* Bored App */ = {
 			isa = PBXGroup;
 			children = (
+				FEE0EF7427DE6566001A4883 /* Network */,
 				FE4A461727DC13D200619A05 /* Resources */,
 				FE4A461627DC13C700619A05 /* ViewModel */,
 				FE4A461527DC13BF00619A05 /* View */,
@@ -172,6 +175,14 @@
 				FE4A45F027DC12D200619A05 /* Bored_App.xcdatamodeld */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		FEE0EF7427DE6566001A4883 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FEE0EF7527DE6616001A4883 /* NetworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +319,7 @@
 				FE4A45E827DC12CD00619A05 /* MainView.swift in Sources */,
 				FE4A461D27DC16A800619A05 /* Activity.swift in Sources */,
 				FE4A45F227DC12D200619A05 /* Bored_App.xcdatamodeld in Sources */,
+				FEE0EF7627DE6616001A4883 /* NetworkManager.swift in Sources */,
 				FE4A461927DC14FB00619A05 /* DetailView.swift in Sources */,
 				FE4A461B27DC151400619A05 /* SearchView.swift in Sources */,
 				FE4A45E627DC12CD00619A05 /* Bored_AppApp.swift in Sources */,
