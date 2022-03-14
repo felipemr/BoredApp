@@ -24,7 +24,7 @@ class SearchViewModel: ObservableObject {
                         self?.filteredActivity = try JSONDecoder().decode(Activity.self, from: data)
                     } catch(let error) {
                         if let err = try? JSONDecoder().decode(ErrorActivity.self, from: data){
-                            self?.filteredActivity = Activity(activity: err.error, type: "Error", participants: 0, price: 0.0, link: "", key: "00000", accessibility: 1)
+//                            self?.filteredActivity = Activity(activity: err.error, type: "Error", participants: 0, price: 0.0, link: "", key: "00000", accessibility: 1)
                         }
                         print(error.localizedDescription)
                     }

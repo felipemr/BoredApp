@@ -7,15 +7,15 @@
 
 import CoreData
 
-struct PersistenceController {
+final class PersistenceController {
     static let shared = PersistenceController()
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+        for x in 0..<10 {
+            let newItem = ActivityEntity(context: viewContext)
+            newItem.activity = "Activity \(x)"
         }
         do {
             try viewContext.save()
@@ -29,6 +29,7 @@ struct PersistenceController {
     }()
 
     let container: NSPersistentContainer
+    var savedEntities: [ActivityEntity] = []
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Bored_App")
@@ -38,19 +39,50 @@ struct PersistenceController {
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
-                /*
-                Typical reasons for an error here include:
-                * The parent directory does not exist, cannot be created, or disallows writing.
-                * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                * The device is out of space.
-                * The store could not be migrated to the current model version.
-                Check the error message to determine what the actual problem was.
-                */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
+            } else {
+                print("it works!")
             }
         })
+    }
+
+    func addActivity(_ newActivity: Activity) {
+        let newEntity = ActivityEntity(context: container.viewContext)
+        newEntity.activity = newActivity.activity
+        newEntity.type = newActivity.type
+        newEntity.key = newActivity.key
+        saveData()
+    }
+
+    func updateActivity(entity: ActivityEntity) {
+        let currentName = entity.activity ?? ""
+        let newName = currentName + "!"
+        entity.activity = newName
+        saveData()
+    }
+
+    func deleteActivity(indexSet: IndexSet){
+        guard let index = indexSet.first else {return}
+        let entity = savedEntities[index]
+        container.viewContext.delete(entity)
+        saveData()
+    }
+
+    private func saveData() {
+        do {
+            try container.viewContext.save()
+            fetchActivities()
+        } catch(let erro) {
+            fatalError("FATAL ERROR \(erro)")
+        }
+    }
+
+    private func fetchActivities(){
+        let request = NSFetchRequest<ActivityEntity>(entityName: "ActivityEntity")
+        do {
+            savedEntities = try container.viewContext.fetch(request)
+        } catch(let erro) {
+            print("Error Fetching: \(erro)")
+        }
     }
 }

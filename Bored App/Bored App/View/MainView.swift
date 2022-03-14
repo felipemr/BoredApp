@@ -10,6 +10,10 @@ import CoreData
 
 struct MainView: View {
 
+//    @Environment(\.managedObjectContext) private var viewContext
+//
+//    @FetchRequest(entity: ActivityEntity.entity(), sortDescriptors: [], animation: .default) var activitiesItems: FetchedResults<ActivityEntity>
+
     @StateObject private var viewModel = MainViewModel()
     @State private var activities = [Activity]()
     @State private var showingSearch = false
@@ -24,6 +28,7 @@ struct MainView: View {
                         Text("\(item.activity)")
                     }
                 }
+                .onDelete(perform: viewModel.deleteActivity)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -34,19 +39,17 @@ struct MainView: View {
                     }
                     .alert("Add this activity?", isPresented: $viewModel.requestIsLoaded, presenting: viewModel.randomAcitivity) { activity in
                         Button("Sure", role: .none) {
-                            print(activity)
+                            viewModel.addActivity(activity)
                         }
-                        Button("Nope", role: .cancel) {
-                            print(activity)
-                        }
+                        Button("Nope", role: .cancel) {}
                     } message: { activity in
                         Text(activity.activity)
-                        Text("UIA")
                     }
                 }
                 ToolbarItem {
                     Button {
-                        showingSearch = true
+//                        showingSearch = true
+                        addItem()
                     } label : {
                         Label("Add Item", systemImage: "plus.circle")
                     }
@@ -63,12 +66,17 @@ struct MainView: View {
     private func addItem() {
         withAnimation {
             viewModel.addNewRandomActivity()
+//            let newAct = ActivityEntity(context: viewContext)
+//            newAct.activity = "super new"
+//            saveData()
         }
     }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

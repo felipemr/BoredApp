@@ -28,8 +28,8 @@ struct DetailView: View {
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailView(activity: Activity(activity: "Nice", type: "Recreational", participants: 1, price: 0.5, link: "Google.com", key: "00000", accessibility: 0.1))
-    }
-}
+//struct DetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailView(activity: Activity(activity: "Nice", type: "Recreational", participants: 1, price: 0.5, link: "Google.com", key: "00000", accessibility: 0.1))
+//    }
+//}

@@ -15,6 +15,17 @@ struct Activity: Codable, Hashable {
     let link: String?
     let key: String
     let accessibility: Double?
+
+    init(from entity: ActivityEntity){
+        self.activity = entity.activity ?? "Error"
+        self.type = entity.type ?? "No Type"
+        self.key = entity.key ?? "\(UUID())"
+
+        self.participants = 0
+        self.price = 0.0
+        self.link = ""
+        self.accessibility = 0.0
+    }
 }
 
 struct ErrorActivity: Codable {
