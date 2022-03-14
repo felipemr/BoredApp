@@ -21,6 +21,7 @@
 		FE4A461D27DC16A800619A05 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4A461C27DC16A800619A05 /* Activity.swift */; };
 		FEE0EF7627DE6616001A4883 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE0EF7527DE6616001A4883 /* NetworkManager.swift */; };
 		FEE0EF7827DE8FAB001A4883 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE0EF7727DE8FAB001A4883 /* MainViewModel.swift */; };
+		FEE0EF7A27DECD1E001A4883 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE0EF7927DECD1E001A4883 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		FE4A461C27DC16A800619A05 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		FEE0EF7527DE6616001A4883 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		FEE0EF7727DE8FAB001A4883 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		FEE0EF7927DECD1E001A4883 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				FEE0EF7727DE8FAB001A4883 /* MainViewModel.swift */,
+				FEE0EF7927DECD1E001A4883 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				FE4A45F227DC12D200619A05 /* Bored_App.xcdatamodeld in Sources */,
 				FEE0EF7627DE6616001A4883 /* NetworkManager.swift in Sources */,
 				FE4A461927DC14FB00619A05 /* DetailView.swift in Sources */,
+				FEE0EF7A27DECD1E001A4883 /* SearchViewModel.swift in Sources */,
 				FE4A461B27DC151400619A05 /* SearchView.swift in Sources */,
 				FE4A45E627DC12CD00619A05 /* Bored_AppApp.swift in Sources */,
 				FEE0EF7827DE8FAB001A4883 /* MainViewModel.swift in Sources */,

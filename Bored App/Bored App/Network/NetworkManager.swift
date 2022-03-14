@@ -17,19 +17,12 @@ enum ErrorType: Error {
 
 class NetworkManager: NSObject {
 
-    static let baseURL = "https://www.boredapi.com/api/activity/"
+    static let baseURL = "https://www.boredapi.com/api/activity?"
 
     static let shared = NetworkManager()
     private let cache = NSCache<NSString, UIImage>()
 
     private override init() {}
-
-    func forceSecureURL(url: String) -> String{
-        if url.contains("http://"){
-            return url.replacingOccurrences(of: "http://", with: "https://")
-        }
-        return url
-    }
 
     func getData(for urlString: String, completed: @escaping (Result<Data, ErrorType>) -> Void) {
         guard let url = URL(string: urlString) else {

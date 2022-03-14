@@ -35,7 +35,9 @@ import SwiftUI
 
 struct SearchView: View {
 
-    @State private var activityTypes = ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork","none"]
+    @StateObject private var viewModel = SearchViewModel()
+
+    @State private var activityTypes = ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"]
     @State private var selectedType = 0
 
     @State private var accessibility = 0.0 //[0.0, 1.0]
@@ -45,6 +47,7 @@ struct SearchView: View {
     @FocusState private var participantsIsFocused: Bool
     let numberFormat: IntegerFormatStyle<Int> = .number
 
+    @State private var currentActivity: Activity?
 
     var body: some View {
         VStack {
@@ -105,14 +108,25 @@ struct SearchView: View {
             }
 
             Button{
-                print("Got it")
+                search()
             } label: {
                 Image(systemName: "magnifyingglass.circle")
             }
             Spacer()
-            Text("WOOOW")
+            Text(viewModel.filteredActivity?.activity ?? "Search")
             Spacer()
         }
+    }
+
+    private func search(){
+        var filters = [String:String]()
+
+        filters["accessibility"] = "\(accessibility)"
+        filters["type"] = activityTypes[selectedType]
+        filters["participants"] = "\(participants)"
+        filters["price"] = "\(price)"
+
+        viewModel.getNewFilteredActivity(with: filters)
     }
 }
 
