@@ -7,11 +7,115 @@
 
 import SwiftUI
 
+//"""
+//accessibility
+//
+//A factor describing how possible an event is to do with zero being the most accessible
+//
+
+//
+//type
+//
+//Type of the activity
+//
+//["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"]
+//
+//participants
+//
+//The number of people that this activity could involve
+//
+
+//
+//price
+//
+//A factor describing the cost of the event with zero being free
+//
+
+//"""
+
 struct SearchView: View {
+
+    @State private var activityTypes = ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork","none"]
+    @State private var selectedType = 0
+
+    @State private var accessibility = 0.0 //[0.0, 1.0]
+    @State private var participants = 0 //[0, n]
+    @State private var price = 0.0 //[0, 1]
+
+    @FocusState private var participantsIsFocused: Bool
+    let numberFormat: IntegerFormatStyle<Int> = .number
+
+
     var body: some View {
-        Image(systemName: "magnifyingglass.circle")
+        VStack {
+            Form {
+                Section {
+                    HStack {
+                        Text("Activity Type")
+                        Picker("Activity Type", selection: $selectedType) {
+                            ForEach(activityTypes, id: \.self) { activityType in
+                                Text(activityType)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                    }
+
+                    HStack {
+                        Text("Accessibility")
+                        Slider(value: $accessibility, in: 0...1) {
+                            Text("$accessibility")
+                        } minimumValueLabel: {
+                            Text("Full")
+                        } maximumValueLabel: {
+                            Text("None")
+                        }
+                    }
+
+
+                    HStack {
+                        Text("Participants")
+                        TextField("Participants", value: $participants, format: numberFormat)
+                            .keyboardType(.numberPad)
+                            .focused($participantsIsFocused)
+                    }
+
+
+                    HStack {
+                        Text("Price")
+                        Slider(value: $price, in: 0...1) {
+                            Text("Price")
+                        } minimumValueLabel: {
+                            Text("$")
+                        } maximumValueLabel: {
+                            Text("$$$")
+                        }
+                    }
+
+                } header: {
+                    Text("Filters")
+                }
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        participantsIsFocused = false
+                    }
+                }
+            }
+
+            Button{
+                print("Got it")
+            } label: {
+                Image(systemName: "magnifyingglass.circle")
+            }
+            Spacer()
+            Text("WOOOW")
+            Spacer()
+        }
     }
 }
+
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {

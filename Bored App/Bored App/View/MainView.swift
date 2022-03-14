@@ -12,8 +12,7 @@ struct MainView: View {
 
     @StateObject private var viewModel = MainViewModel()
     @State private var activities = [Activity]()
-//    @State private var showingRandomAlert = false
-//    @State private var randomActivity: Activity?
+    @State private var showingSearch = false
 
     var body: some View {
         NavigationView {
@@ -46,9 +45,15 @@ struct MainView: View {
                     }
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button {
+                        showingSearch = true
+                    } label : {
                         Label("Add Item", systemImage: "plus.circle")
                     }
+                    .sheet(isPresented: $showingSearch) {
+                        SearchView()
+                    }
+
                 }
             }
             Text("Select an item")
